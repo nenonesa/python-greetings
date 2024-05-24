@@ -1,9 +1,45 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('build-docker-image') {
             steps {
-                echo 'Hello !'
+                echo 'Building docker image for python-greetings app...'
+                //
+            }
+        }
+        stage('deploy-to-dev') {
+            steps {
+                echo 'Deploying to DEV environement...'
+                //
+            }
+        }
+        stage('tests-on-dev') {
+            steps {
+                echo 'API tests on DEV environement...'
+                //
+            }
+        }
+        stage('deploy-to-stg') {
+            steps {
+                echo 'Deploying to STG environement...'
+                //
+            }
+        }
+        stage('tests-on-stg') {
+            steps {
+                echo 'API tests on STG environement...'
+                //
+            }
+        }
+        stage('deploy-to-prod') {
+            steps {
+                echo 'Deploying to PROD environement...'
+                //
+            }
+        }
+        stage('tests-on-prd') {
+            steps {
+                echo 'API tests on PROD environement...'
                 //
             }
         }
