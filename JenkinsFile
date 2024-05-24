@@ -52,3 +52,8 @@ def deploy(String environment) {
     sh "docker compose rm greetings-app-${environment}"
     sh "docker compose up -d greetings-app-${environment}"
 }
+def run_api_tests(String environment) {
+    echo "API tests on ${environment} environement..."
+    sh "docker pull nenonesa/api-tests:latest"
+    sh "docker run --network=host --rm nenonesa/api-tests:latest run greetings greetings_${environment}"
+}
