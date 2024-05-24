@@ -3,45 +3,45 @@ pipeline {
     stages {
         stage('build-docker-image') {
             steps {
-                echo 'Building docker image for python-greetings app...'
-                //
+                build_docker_image()
             }
         }
         stage('deploy-to-dev') {
             steps {
                 echo 'Deploying Python microservice to DEV environment...'
-                //
             }
         }
         stage('tests-on-dev') {
             steps {
                 echo 'API tests on DEV environement...'
-                //
             }
         }
         stage('deploy-to-stg') {
             steps {
                 echo 'Deploying Python microservice to STG environment...'
-                //
             }
         }
         stage('tests-on-stg') {
             steps {
                 echo 'API tests on STG environement...'
-                //
             }
         }
         stage('deploy-to-prod') {
             steps {
                 echo 'Deploying Python microservice to PROD environment...'
-                //
             }
         }
         stage('tests-on-prd') {
             steps {
                 echo 'API tests on PROD environement...'
-                //
             }
         }
     }
+}
+def build_docker_image() {
+    echo 'Building docker image for python-greetings app...'
+    sh "docker build --no-cache -t nenonesa/sample-book-app ."
+
+    echo 'Pushing docker image to docker registry..'
+    sh "docker push nenonesa/python-greetings-app:latest"
 }
