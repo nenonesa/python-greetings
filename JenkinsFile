@@ -9,7 +9,7 @@ pipeline {
         }
         stage('deploy-to-dev') {
             steps {
-                echo 'Deploying to DEV environement...'
+                echo 'Deploying Python microservice to DEV environment...'
                 //
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('deploy-to-stg') {
             steps {
-                echo 'Deploying to STG environement...'
+                echo 'Deploying Python microservice to STG environment...'
                 //
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('deploy-to-prod') {
             steps {
-                echo 'Deploying to PROD environement...'
+                echo 'Deploying Python microservice to PROD environment...'
                 //
             }
         }
