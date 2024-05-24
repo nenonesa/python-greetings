@@ -8,7 +8,7 @@ pipeline {
         }
         stage('deploy-to-dev') {
             steps {
-                echo 'Deploying Python microservice to DEV environment...'
+                deploy('dev')
             }
         }
         stage('tests-on-dev') {
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('deploy-to-stg') {
             steps {
-                echo 'Deploying Python microservice to STG environment...'
+                deploy('stg')
             }
         }
         stage('tests-on-stg') {
@@ -28,10 +28,10 @@ pipeline {
         }
         stage('deploy-to-prod') {
             steps {
-                echo 'Deploying Python microservice to PROD environment...'
+                deploy('prod')
             }
         }
-        stage('tests-on-prd') {
+        stage('tests-on-prod') {
             steps {
                 echo 'API tests on PROD environement...'
             }
@@ -44,4 +44,11 @@ def build_docker_image() {
 
     echo 'Pushing docker image to docker registry..'
     sh "docker push nenonesa/python-greetings-app:latest"
+}
+def deploy(String environment) {
+    echo "Deploying Python microservice to ${environment} environment..."
+    sh "docker pull nenonesa/python-greetings-app:latest"
+    sh "docker compose stop greetings-app-${environment}"
+    sh "docker compose rm greetings-app-${environment}"
+    sh "docker compose up -d greetings-app-${environment}"
 }
